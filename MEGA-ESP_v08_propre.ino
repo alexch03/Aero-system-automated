@@ -161,14 +161,16 @@ byte bas4[8] =
 #define ONE_WIRE_BUS 7
 //=========================================Constantes utiilisées============================
 unsigned long currentMillis1 = 0;
+unsigned long currentMillis4 = 0;
 unsigned long previousMillis1 = 0;
 unsigned long previousMillis = 0;
 unsigned long previousMillis3 = 0;
 const long interval = 10000;
-const long periodtds = (1 * 60 * 60 * 1000); // 1h
-const long nettoyage = 15000;
+unsigned long periodtds = 3600000; // 1h
+const long nettoyage = 10000;
 const int chipSelect = 49;
-
+unsigned long startMillis1;
+unsigned long startMillis;
 String message = "";
 bool messageReady = false;
 String message1 = "";
@@ -311,7 +313,7 @@ void setup() {
   pinMode(DS1302_VCC_PIN, OUTPUT);
 
   LedState();
-  startMillis = millis();
+  startMillis1 = millis();
   startMillis = millis();
   lcd.init();
   lcd.createChar(0, Heart);
@@ -494,13 +496,15 @@ void settds() {
 
   unsigned long currentMillis3 = millis();
   if (tdsValue  <= tdsval && tdsValue != 0 && freshtds == false && pompestate == 1 && tdsValue > 150) {
-
-    digitalWrite(moteurB_1, HIGH);
-    digitalWrite(moteurB_2, LOW);
-    delay(5);
-    previousMillis3 = currentMillis3;
+    
+  currentMillis4 = millis();  //get the current "time" (actually the number of milliseconds since the program started)
+  if (currentMillis4 - startMillis >= 8000 ) {
+    digitalWrite(moteurB_1, !digitalRead(moteurB_1));  //if so, change the state of the LED.  Uses a neat trick to change the state
+    startMillis1 = currentMillis4;  //IMPORTANT to save the start time of the current LED state.
+  
+  }
+  previousMillis3 = currentMillis3;
     cleanup = true;
-
   }
   if (tdsValue  >= tdsval && cleanup == true ) {
 
@@ -546,7 +550,7 @@ void loop() {
   formulair1();
   timmer();
   data();
-  lcd();
+  flcd();
   average();
   setwater();
 }
@@ -569,12 +573,12 @@ void state() {
 
 void sensor() {
   sensors.requestTemperatures();
-  float  temperature = sensors.getTempCByIndex(0);
-  float   humi = dht.readHumidity();
-  float temp = dht.readTemperature();
+  temperature = sensors.getTempCByIndex(0);
+  humi = dht.readHumidity();
+  temp = dht.readTemperature();
 
   valeur_brute = analog.getValue();
-  float tbox = valeur_brute * (5.0 / 1023.0 * 100.0);
+  tbox = valeur_brute * (5.0 / 1023.0 * 100.0);
 }
 
 void setwater() {
@@ -713,7 +717,7 @@ void data() {
 }
 
 
-void lcd() {
+void flcd() {
   lcd.setCursor(0, 0);
   lcd.print("T Eau:");
   lcd.print(temperature, 1);
