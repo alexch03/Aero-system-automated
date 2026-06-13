@@ -55,7 +55,7 @@ float float4;
 const char* www_username = "admin";
 const char* www_password = "alex";
 
-const char* www_realm = "Bienvenue Identification Requise";
+const char* www_realm = "Welcome - Authentication Required / Bienvenue - Identification Requise";
 
 
 String sendtds(int valtds) {

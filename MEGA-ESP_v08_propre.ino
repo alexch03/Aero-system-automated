@@ -36,7 +36,7 @@ byte Heart[8] = {
 
 
 
-//=========================================debut Muoton"Black Sheep" Alexandros Pantelidis Avril 2020=================================
+//========================================= Start "Black Sheep" custom LCD chars — Alexandros Pantelidis, April 2020 =================================
 byte tete1[8] =
 {
   0b00011,
@@ -132,8 +132,8 @@ byte bas4[8] =
   0b00100,
   0b00100
 };
-//=========================================Fin mouton=================================
-//=========================================Librarie utilisées=========================
+//========================================= End sheep =================================
+//========================================= Libraries used =========================
 #include <EEPROM.h>
 #include <DHT.h>
 #include <DallasTemperature.h>
@@ -142,7 +142,7 @@ byte bas4[8] =
 #include <LiquidCrystal_I2C.h>
 #include  <virtuabotixRTC.h>  //Library used
 #include <ResponsiveAnalogRead.h>
-//=========================================Pin definie=================================
+//========================================= Pin definitions =================================
 #define RELAY1 24
 #define POMPES 22
 #define LAMPES 26
@@ -159,7 +159,7 @@ byte bas4[8] =
 #define VREF 5.0 // analog reference voltage(Volt) of the ADC
 #define SCOUNT 3 // sum of sample point
 #define ONE_WIRE_BUS 7
-//=========================================Constantes utiilisées============================
+//========================================= Constants used ============================
 unsigned long currentMillis1 = 0;
 unsigned long currentMillis4 = 0;
 unsigned long previousMillis1 = 0;
@@ -234,7 +234,7 @@ int valeur_brute;
 bool freshtds = false;
 bool cleanup = false;
 bool perioff = true;
-//=========================================Fonction declaré============================
+//========================================= Object instances ============================
 
 LiquidCrystal_I2C lcd(0x27, 16, 2); // set the LCD address to 0x27 for a 16 chars and 2 line display
 DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
@@ -242,7 +242,7 @@ OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 ResponsiveAnalogRead analog(Tbox, true);
 virtuabotixRTC myRTC(35, 37, 39); //If you change the wiring change the pins here also
-//=========================================Fonction demmarage ============================
+//========================================= Startup function ============================
 void LedState() {
 
   val = EEPROM.read(addr);
@@ -277,7 +277,7 @@ void LedState() {
 
 }
 
-//=========================================Executé au demmarage============================
+//========================================= Runs once at startup ============================
 void setup() {
   Serial.begin(9600);
   delay(1);
@@ -338,7 +338,7 @@ void setup() {
 }
 
 
-//=========================================Set cycle arrosage /on/off============================
+//========================================= Set watering cycle ON/OFF ============================
 
 
 void setpompe() {
@@ -416,7 +416,7 @@ void parseData() {
 
 }
 
-//=========================================fonction recu depuis nodemcu============================
+//========================================= Functions handling data received from NodeMCU ============================
 
 void showParsedData() {
   if (integerFromPC  == 1) {
@@ -492,7 +492,7 @@ void tdsva () {
 }
 
 void settds() {
-  int tdsval = 10 * EEPROM.read(8);   //10* valeur epprom car max 256 impossible de stocker 1000 comme valeur mais 100*10 c'est possible
+  int tdsval = 10 * EEPROM.read(8);   // 10 * EEPROM value: a byte caps at 255 so we can't store 1000 directly, but 100*10 works
 
   unsigned long currentMillis3 = millis();
   if (tdsValue  <= tdsval && tdsValue != 0 && freshtds == false && pompestate == 1 && tdsValue > 150) {
