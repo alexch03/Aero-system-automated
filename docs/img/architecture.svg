@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b4332"/>
+      <stop offset="1" stop-color="#0f2e22"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d6a4f"/>
+      <stop offset="1" stop-color="#245b41"/>
+    </linearGradient>
+    <linearGradient id="mcu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#95d5b2"/>
+      <stop offset="1" stop-color="#74c69d"/>
+    </linearGradient>
+    <linearGradient id="esp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#52b788"/>
+      <stop offset="1" stop-color="#40916c"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d8f3dc"/>
+    </marker>
+    <marker id="arrowDark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1b4332"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="500" fill="url(#bg)"/>
+
+  <text x="450" y="36" text-anchor="middle" fill="#d8f3dc" font-size="20" font-weight="700" letter-spacing="0.5">
+    Aero-system-automated — Hardware Architecture
+  </text>
+  <text x="450" y="58" text-anchor="middle" fill="#95d5b2" font-size="13" font-weight="400">
+    Arduino Mega 2560 + ESP8266 NodeMCU · WiFi remote control
+  </text>
+
+  <!-- SENSORS column -->
+  <g>
+    <rect x="30" y="100" width="180" height="290" rx="14" fill="url(#card)" stroke="#95d5b2" stroke-width="1.5" opacity="0.95"/>
+    <text x="120" y="128" text-anchor="middle" fill="#d8f3dc" font-size="14" font-weight="700">SENSORS</text>
+    <line x1="50" y1="142" x2="190" y2="142" stroke="#95d5b2" stroke-width="1" opacity="0.5"/>
+
+    <g font-size="12" fill="#d8f3dc">
+      <circle cx="60" cy="170" r="5" fill="#95d5b2"/>
+      <text x="74" y="174">DS18B20 — water T°</text>
+
+      <circle cx="60" cy="200" r="5" fill="#95d5b2"/>
+      <text x="74" y="204">DHT22 — air T° / RH</text>
+
+      <circle cx="60" cy="230" r="5" fill="#95d5b2"/>
+      <text x="74" y="234">LM35 — grow box T°</text>
+
+      <circle cx="60" cy="260" r="5" fill="#95d5b2"/>
+      <text x="74" y="264">TDS — nutrient ppm</text>
+
+      <circle cx="60" cy="290" r="5" fill="#95d5b2"/>
+      <text x="74" y="294">Water level switch</text>
+
+      <circle cx="60" cy="320" r="5" fill="#95d5b2"/>
+      <text x="74" y="324">RTC DS3231 (I2C)</text>
+
+      <circle cx="60" cy="350" r="5" fill="#95d5b2"/>
+      <text x="74" y="354">Push buttons</text>
+    </g>
+  </g>
+
+  <!-- MEGA central -->
+  <g>
+    <rect x="280" y="170" width="220" height="160" rx="16" fill="url(#mcu)" stroke="#d8f3dc" stroke-width="2"/>
+    <text x="390" y="210" text-anchor="middle" fill="#1b4332" font-size="16" font-weight="800">Arduino Mega</text>
+    <text x="390" y="232" text-anchor="middle" fill="#1b4332" font-size="14" font-weight="700">2560</text>
+    <text x="390" y="258" text-anchor="middle" fill="#1b4332" font-size="11" opacity="0.85">control loop · scheduling</text>
+    <text x="390" y="274" text-anchor="middle" fill="#1b4332" font-size="11" opacity="0.85">PID water T° · safety</text>
+    <text x="390" y="290" text-anchor="middle" fill="#1b4332" font-size="11" opacity="0.85">sensor fusion · logging</text>
+    <text x="390" y="318" text-anchor="middle" fill="#1b4332" font-size="10" font-weight="700" opacity="0.7">UART ↕ ESP8266</text>
+  </g>
+
+  <!-- ESP -->
+  <g>
+    <rect x="570" y="170" width="170" height="100" rx="14" fill="url(#esp)" stroke="#d8f3dc" stroke-width="2"/>
+    <text x="655" y="202" text-anchor="middle" fill="#1b4332" font-size="15" font-weight="800">ESP8266</text>
+    <text x="655" y="220" text-anchor="middle" fill="#1b4332" font-size="13" font-weight="700">NodeMCU</text>
+    <text x="655" y="242" text-anchor="middle" fill="#1b4332" font-size="11" opacity="0.85">web server · OTA</text>
+    <text x="655" y="258" text-anchor="middle" fill="#1b4332" font-size="11" opacity="0.85">password-protected UI</text>
+  </g>
+
+  <!-- WiFi / phone -->
+  <g>
+    <rect x="600" y="305" width="110" height="80" rx="12" fill="#0f2e22" stroke="#52b788" stroke-width="1.5"/>
+    <text x="655" y="332" text-anchor="middle" fill="#95d5b2" font-size="11" font-weight="700">WiFi</text>
+    <path d="M635 348 q20 -16 40 0" stroke="#95d5b2" fill="none" stroke-width="1.5"/>
+    <path d="M642 358 q13 -10 26 0" stroke="#95d5b2" fill="none" stroke-width="1.5"/>
+    <circle cx="655" cy="368" r="2.5" fill="#95d5b2"/>
+    <text x="655" y="402" text-anchor="middle" fill="#d8f3dc" font-size="11">smartphone UI</text>
+  </g>
+
+  <!-- ACTUATORS column -->
+  <g>
+    <rect x="690" y="100" width="180" height="60" rx="12" fill="url(#card)" stroke="#95d5b2" stroke-width="1.5"/>
+    <text x="780" y="125" text-anchor="middle" fill="#d8f3dc" font-size="13" font-weight="700">ACTUATORS &amp; I/O</text>
+    <text x="780" y="145" text-anchor="middle" fill="#95d5b2" font-size="10">driven by the Mega</text>
+  </g>
+
+  <g font-size="11" fill="#d8f3dc">
+    <rect x="280" y="380" width="120" height="48" rx="10" fill="#1b4332" stroke="#95d5b2" stroke-width="1"/>
+    <text x="340" y="402" text-anchor="middle" font-weight="700" fill="#d8f3dc">Peltier</text>
+    <text x="340" y="418" text-anchor="middle" fill="#95d5b2">water T° regul.</text>
+
+    <rect x="410" y="380" width="120" height="48" rx="10" fill="#1b4332" stroke="#95d5b2" stroke-width="1"/>
+    <text x="470" y="402" text-anchor="middle" font-weight="700" fill="#d8f3dc">Pumps</text>
+    <text x="470" y="418" text-anchor="middle" fill="#95d5b2">mist · refill · dose</text>
+
+    <rect x="540" y="380" width="120" height="48" rx="10" fill="#1b4332" stroke="#95d5b2" stroke-width="1"/>
+    <text x="600" y="402" text-anchor="middle" font-weight="700" fill="#d8f3dc">Grow lights</text>
+    <text x="600" y="418" text-anchor="middle" fill="#95d5b2">scheduled ON/OFF</text>
+
+    <rect x="150" y="380" width="120" height="48" rx="10" fill="#1b4332" stroke="#95d5b2" stroke-width="1"/>
+    <text x="210" y="402" text-anchor="middle" font-weight="700" fill="#d8f3dc">LCD 16×2</text>
+    <text x="210" y="418" text-anchor="middle" fill="#95d5b2">I²C status display</text>
+
+    <rect x="30" y="380" width="110" height="48" rx="10" fill="#1b4332" stroke="#95d5b2" stroke-width="1"/>
+    <text x="85" y="402" text-anchor="middle" font-weight="700" fill="#d8f3dc">microSD</text>
+    <text x="85" y="418" text-anchor="middle" fill="#95d5b2">CSV log</text>
+  </g>
+
+  <!-- arrows: sensors -> mega -->
+  <g stroke="#d8f3dc" stroke-width="2" fill="none" marker-end="url(#arrow)" opacity="0.9">
+    <path d="M210 250 C 245 250, 250 250, 280 250"/>
+  </g>
+
+  <!-- mega -> esp -->
+  <g stroke="#d8f3dc" stroke-width="2.5" fill="none" marker-end="url(#arrow)">
+    <path d="M500 220 L 570 220"/>
+  </g>
+  <text x="535" y="210" text-anchor="middle" fill="#d8f3dc" font-size="10" font-weight="700">UART</text>
+
+  <!-- esp -> wifi -->
+  <g stroke="#d8f3dc" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M655 270 L 655 305"/>
+  </g>
+
+  <!-- mega -> actuators (downward) -->
+  <g stroke="#d8f3dc" stroke-width="2" fill="none" marker-end="url(#arrow)" opacity="0.85">
+    <path d="M340 330 L 340 380"/>
+    <path d="M420 330 L 470 380"/>
+    <path d="M450 330 L 600 380"/>
+    <path d="M310 330 L 210 380"/>
+    <path d="M295 330 L 85 380"/>
+  </g>
+
+  <text x="450" y="475" text-anchor="middle" fill="#95d5b2" font-size="11" opacity="0.85">
+    Bidirectional UART link · ESP serves a self-hosted web UI · OTA firmware updates over WiFi
+  </text>
+</svg>

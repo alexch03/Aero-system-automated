@@ -2,6 +2,10 @@
 
 # Aero-system-automated — DIY Automated Aeroponic System with WiFi Remote Control
 
+<p align="center">
+  <img src="docs/img/architecture.svg" alt="Aero-system-automated hardware architecture — Arduino Mega 2560 sensor hub, ESP8266 WiFi web UI, peltier / pumps / lights / LCD / SD actuators" width="900" />
+</p>
+
 An open-source **automated aeroponic system** built around an **Arduino Mega 2560 + NodeMCU ESP8266**, remotely controlled over WiFi from any smartphone. This DIY smart farming project handles water temperature regulation, nutrient (TDS) monitoring, automated watering cycles, programmable grow lights, and real-time sensor logging — all from a self-hosted web interface served by the ESP8266.
 
 Originally built from scratch during the March–April 2020 lockdown as a first electronics / Arduino project, it has been running reliably for weeks in real-world growing conditions. If you are looking for a hackable starting point for **hydroponics automation**, **WiFi-controlled grow boxes**, **Arduino Mega ESP8266 IoT projects**, or **DIY indoor farming**, this repo is a complete reference: full source code, wiring, schematics, photos and videos.

@@ -2,6 +2,10 @@
 
 # Aero-system-automated
 
+<p align="center">
+  <img src="docs/img/architecture.svg" alt="Aero-system-automated hardware architecture — Arduino Mega 2560 sensor hub, ESP8266 WiFi web UI, peltier / pumps / lights / LCD / SD actuators" width="900" />
+</p>
+
 Système aéroponique automatisé contrôlé à distance via WiFi, basé sur **Arduino Mega 2560 + NodeMCU ESP8266**.
 
 Projet personnel réalisé pendant le confinement de mars-avril 2020 — premier projet électronique / Arduino, en partant de zéro.
